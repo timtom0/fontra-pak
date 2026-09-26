@@ -1,4 +1,15 @@
-git+https://github.com/fontra/fontra.git
+# The Fontra build used by Fontra Pak.
+#
+# By default this points at the upstream Fontra repository. To build a Fontra
+# Pak that includes a Fontra fork (for example one with extra features), set
+# the FONTRA_PAK_FONTRA_REF environment variable to a ref in *your* fork:
+#
+#     set FONTRA_PAK_FONTRA_REF=timtom0/fontra@opentype-features-gui
+#     pyinstaller FontraPak.spec -y
+#
+# The value must be "<owner>/<repo>@<ref>", and must be resolvable with
+# "pip install".
+git+https://github.com/timtom0/fontra.git@opentype-features-gui
 git+https://github.com/fontra/fontra-compile.git
 git+https://github.com/fontra/fontra-rcjk.git
 git+https://github.com/fontra/fontra-glyphs.git
