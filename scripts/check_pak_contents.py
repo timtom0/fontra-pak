@@ -34,6 +34,10 @@ checks = [
     ("ot-preview-output", "output-side preview box"),
     ("ot-rule-sample-arrow", "arrow between the two sides"),
     ("ot-svg-run", "SVG glyph run class"),
+    ("ot-rule-card-head", "card header row"),
+    # Grid layout
+    ("ot-rules-list", "rule grid"),
+    ("auto-fill", "responsive grid columns"),
     ("ot-section-header", "collapsible section header"),
     ("ot-add-rule-row", "add-rule row"),
     ("chevron-right.svg", "collapse chevron icon"),
