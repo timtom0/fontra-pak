@@ -29,7 +29,11 @@ print(f"bundle size: {len(text)}")
 # not here, so they are checked separately below.
 checks = [
     ("opentype-features-panel", "feature editor panel"),
-    ("ot-rule-sample-canvas", "per-rule sample canvas"),
+    # Per-rule two-sided SVG preview
+    ("ot-preview-input", "input-side preview box"),
+    ("ot-preview-output", "output-side preview box"),
+    ("ot-rule-sample-arrow", "arrow between the two sides"),
+    ("ot-svg-run", "SVG glyph run class"),
     ("ot-section-header", "collapsible section header"),
     ("ot-add-rule-row", "add-rule row"),
     ("chevron-right.svg", "collapse chevron icon"),
@@ -47,6 +51,20 @@ for needle, label in checks:
     print(f"  {label}: {'FOUND' if found else 'MISSING'}")
     if not found:
         missing.append(label)
+
+# The previews must be SVG now, and the canvas version must be gone.
+if "ot-rule-sample-canvas" in text:
+    print("  WARNING: the old canvas preview is still present")
+    missing.append("old canvas preview should be gone")
+else:
+    print("  old canvas preview: removed")
+
+# The eye toggle is gone.
+if "eye-closed.svg" in text:
+    print("  WARNING: the eye toggle icon is still present")
+    missing.append("eye toggle should be gone")
+else:
+    print("  eye toggle: removed")
 
 # The old shared-preview box should be gone.
 if "ot-features-preview-text" in text:
