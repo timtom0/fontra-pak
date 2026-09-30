@@ -13,6 +13,8 @@ git+https://github.com/timtom0/fontra.git@opentype-features-gui
 git+https://github.com/fontra/fontra-compile.git
 git+https://github.com/fontra/fontra-rcjk.git
 git+https://github.com/fontra/fontra-glyphs.git
+# Fontra reads GSUB/GPOS out of a compiled .ttf/.otf with this, imported lazily.
+fontfeatures>=1.9.0
 aiohttp==3.14.3
 setuptools==84.0.0
 PyQt6==6.7.1

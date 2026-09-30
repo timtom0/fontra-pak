@@ -67,6 +67,9 @@ modules_to_collect_all = [
     "cffsubr",
     "openstep_plist",
     "glyphsLib.data",
+    # Imported lazily by fontra.backends.otfeatures, to read GSUB/GPOS out of
+    # a compiled .ttf/.otf, so PyInstaller's static analysis won't find it.
+    "fontFeatures",
 ]
 for module_name in modules_to_collect_all:
     tmp_ret = collect_all(module_name)

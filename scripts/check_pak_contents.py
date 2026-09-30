@@ -91,5 +91,25 @@ if chunks:
 else:
     missing.append("fontra-core chunk")
 
+# Reading a compiled .ttf's features is Python-side, so check the archive has
+# both our reader and the fontFeatures package it imports lazily.
+pyCandidates = [n for n in names if "otfeatures" in n]
+print(f"  otfeatures module: {'FOUND' if pyCandidates else 'MISSING'}")
+if not pyCandidates:
+    missing.append("fontra.backends.otfeatures")
+
+ffCandidates = [n for n in names if "fontFeatures" in n]
+print(f"  fontFeatures package: {len(ffCandidates)} entr(y/ies)")
+if not ffCandidates:
+    missing.append("fontFeatures (needed to read a .ttf's features)")
+
+# GDEFUnparser is imported lazily too, so make sure the ttLib subpackage is whole
+for needed in ("fontFeatures.ttLib", "fontFeatures.GPOSUnparser", "fontFeatures.GSUBUnparser"):
+    found = any(n.replace("\\", "/").endswith(needed.split(".")[-1] + ".pyc")
+                or needed.split(".")[-1] in n for n in ffCandidates)
+    print(f"  {needed}: {'FOUND' if found else 'MISSING'}")
+    if not found:
+        missing.append(needed)
+
 print("OK" if not missing else f"FAIL: missing {missing}")
 sys.exit(0 if not missing else 1)
